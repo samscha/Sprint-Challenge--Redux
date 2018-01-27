@@ -16,12 +16,8 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('next', nextProps);
-
     if (nextProps.error)
       window.alert(`${JSON.parse(nextProps.error.request.responseText).Error}`);
-
-    // console.log('current', this.props);
   }
 
   addSmurfHandler = newSmurf => {

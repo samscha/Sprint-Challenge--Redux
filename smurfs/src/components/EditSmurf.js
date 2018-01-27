@@ -38,6 +38,12 @@ class EditSmurf extends Component {
 					editedFriend[property] = this.state[property];
 			}
 
+			if (editedFriend.height !== undefined) {
+				if (!editedFriend.height.includes(' cm'))
+					window.alert('Please add cm to height, i.e. 12 cm');
+				return;
+			}
+
 			this.props.editSmurfHandler(editedFriend);
 		}
 	};

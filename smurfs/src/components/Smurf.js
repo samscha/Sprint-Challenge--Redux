@@ -58,6 +58,7 @@ class Smurf extends Component {
 					<div className="DeleteSmurfButtonContainer">
 						<button
 							className="DeleteSmurfButton"
+							disabled={this.state.isEditing}
 							onClick={this.deleteSmurfButtonClicked}
 						>
 							&#215;
@@ -88,6 +89,7 @@ class Smurf extends Component {
 					<div className="HeartButtonContainer">
 						<button
 							className="HeartButton"
+							disabled={this.state.isEditing}
 							onClick={this.favoriteButtonClicked}
 							style={
 								!this.state.isFavorited ? {} : { backgroundColor: '#ff9aa2' }

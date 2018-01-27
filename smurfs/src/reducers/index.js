@@ -24,7 +24,7 @@ const initialState = {
   smurfsDeleted: false,
 
   showUi: false,
-  error: false,
+  error: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -35,7 +35,13 @@ const rootReducer = (state = initialState, action) => {
     case actionType.RESET_ACTION_STATE:
       return {
         ...state,
+        smurfsFetched: false,
+        smurfAdded: false,
+        smurfUpdated: false,
+        smurfDeleted: false,
+        smurfsDeleted: false,
         showUi: false,
+        error: null,
       };
 
     // *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~

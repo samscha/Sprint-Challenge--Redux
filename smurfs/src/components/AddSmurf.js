@@ -76,7 +76,7 @@ class AddSmurf extends Component {
 			window.alert('Please add height');
 			return !isOkayToAdd;
 		} else if (!this.state.height.includes(' cm')) {
-			window.alert('Please add cm to height i.e. 11 cm');
+			window.alert('Please add cm to height, i.e. 11 cm');
 			return !isOkayToAdd;
 		}
 
