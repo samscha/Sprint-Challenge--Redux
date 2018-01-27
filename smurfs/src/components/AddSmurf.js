@@ -90,6 +90,7 @@ class AddSmurf extends Component {
 					<div className="AddSmurfButtonContainer">
 						<button
 							className="AddSmurfButton"
+							disabled={this.props.disabled}
 							onClick={this.AddSmurfButtonClickHandler}
 						>
 							invite smurf
@@ -108,6 +109,7 @@ class AddSmurf extends Component {
 					<div className="IsAddingSmurf">
 						<button
 							className="CancelAddSmurfButton"
+							disabled={this.props.disabled}
 							onClick={this.CancelAddSmurfButtonClickHandler}
 						>
 							cancel
@@ -148,6 +150,7 @@ class AddSmurf extends Component {
 								className="AddSmurfConfirmButton"
 								type="button"
 								value="invite"
+								disabled={this.props.disabled}
 								onClick={this.addSmurfHandler}
 							/>
 						</form>

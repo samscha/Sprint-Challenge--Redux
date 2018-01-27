@@ -16,7 +16,11 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('next', nextProps);
+    console.log('next', nextProps);
+
+    if (nextProps.error)
+      window.alert(`${JSON.parse(nextProps.error.request.responseText).Error}`);
+
     // console.log('current', this.props);
   }
 
@@ -39,7 +43,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props.smurfs);
     return (
       <div className="App">
         <Header />
@@ -48,6 +51,7 @@ class App extends Component {
           <div className="TopStatusBarButtons">
             <button
               className="DeleteVillageButton"
+              disabled={!this.props.showUi}
               onClick={this.deleteAllFriendsButtonHandler}
             >
               &#x2717;
@@ -55,10 +59,13 @@ class App extends Component {
 
             <AddSmurf
               className="App__addSmurf"
+              disabled={!this.props.showUi}
               addSmurfHandler={this.addSmurfHandler}
             />
 
-            <button className="EditVillageButton">&#x270e;</button>
+            <button className="EditVillageButton" disabled={!this.props.showUi}>
+              &#x270e;
+            </button>
           </div>
         </div>
 
@@ -77,6 +84,7 @@ const mapStateToProps = state => {
     showUi: state.showUi,
     smurfs: state.smurfs,
     evictedSmurfs: state.evictedSmurfs,
+    error: state.error,
   };
 };
 
