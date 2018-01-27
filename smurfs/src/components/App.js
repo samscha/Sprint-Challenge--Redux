@@ -38,6 +38,10 @@ class App extends Component {
     }
   };
 
+  refreshVillageClickedHandler = _ => {
+    this.props.getSmurfs();
+  };
+
   render() {
     return (
       <div className="App">
@@ -59,8 +63,12 @@ class App extends Component {
               addSmurfHandler={this.addSmurfHandler}
             />
 
-            <button className="EditVillageButton" disabled={!this.props.showUi}>
-              &#x270e;
+            <button
+              className="RefreshVillageButton"
+              disabled={!this.props.showUi}
+              onClick={this.refreshVillageClickedHandler}
+            >
+              &#10227;
             </button>
           </div>
         </div>
