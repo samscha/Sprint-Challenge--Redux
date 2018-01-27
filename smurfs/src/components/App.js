@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSmurfs, addSmurf, deleteSmurf } from '../actions';
+import { getSmurfs, addSmurf, deleteSmurf, deleteAllSmurfs } from '../actions';
 
 import Header from './Header';
 import Smurfs from './Smurfs';
@@ -25,19 +25,16 @@ class App extends Component {
   };
 
   deleteAllFriendsButtonHandler = _ => {
-    if (
-      this.props.smurfs.length > 0 &&
-      window.confirm(
-        'This will annihilate your village. Just kidding. But this will evict all your smurfs. Are you sure you want to continue?'
-      )
-    ) {
-      [...this.props.smurfs].forEach(smurf => {
-        this.props.deleteSmurf(smurf.id);
-      });
-      console.log('finish delete all');
-      // for (let i = 0; i <= this.props.smurfs.length-1; i++) {
-      //   this.props.deleteSmurf(this.props.smurfs[i].id);
-      // }
+    if (this.props.smurfs.length > 0) {
+      if (
+        window.confirm(
+          'This will annihilate your village. This CANNOT be undone. Smurfs are not evicted. They are annihilated. Are you sure you want to continue?'
+        )
+      ) {
+        this.props.deleteAllSmurfs();
+      }
+    } else {
+      window.alert('Add some smurfs to your village before annihilating!');
     }
   };
 
@@ -53,7 +50,7 @@ class App extends Component {
               className="DeleteVillageButton"
               onClick={this.deleteAllFriendsButtonHandler}
             >
-              &#x2672;
+              &#x2717;
             </button>
 
             <AddSmurf
@@ -87,4 +84,5 @@ export default connect(mapStateToProps, {
   getSmurfs,
   addSmurf,
   deleteSmurf,
+  deleteAllSmurfs,
 })(App);

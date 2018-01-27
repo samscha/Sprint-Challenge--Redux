@@ -43,6 +43,11 @@ server.post('/smurfs', (req, res) => {
   res.json(smurfs);
 });
 
+server.get('/smurfs/d', (req, res) => {
+  smurfs = [];
+  res.json(smurfs);
+});
+
 server.put('/smurfs/:id', (req, res) => {
   const { id } = req.params;
   const { name, age, height } = req.body;

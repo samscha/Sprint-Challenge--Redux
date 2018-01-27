@@ -131,6 +131,7 @@ const rootReducer = (state = initialState, action) => {
         evictedSmurfs: [...state.evictedSmurfs, action.payload],
         deletingSmurf: false,
         smurfDeleted: true,
+        showUi: true,
       };
     case actionType.SMURF_DELETING_ERROR:
       return {
@@ -151,22 +152,17 @@ const rootReducer = (state = initialState, action) => {
     case actionType.SMURFS_DELETING_SUCCESS:
       return {
         ...state,
-        smurfs: state.smurfs.filter(smurf => smurf.id !== action.payload.id),
-        evictedSmurfs: [...state.evictedSmurfs, action.payload],
+        smurfs: action.payload,
         deletingSmurfs: false,
-        smurfDeleteds: true,
-        showUi: false,
+        smurfsDeleted: true,
+        showUi: true,
       };
     case actionType.SMURFS_DELETING_ERROR:
       return {
         ...state,
-        deletingSmurf: false,
-        error: action.payload,
-      };
-    case actionType.SHOW_UI:
-      return {
-        ...state,
+        deletingSmurfs: false,
         showUi: true,
+        error: action.payload,
       };
 
     // *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~

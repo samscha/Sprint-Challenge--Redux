@@ -22,8 +22,6 @@ export const SMURFS_DELETING = 'SMURFS_DELETING';
 export const SMURFS_DELETING_SUCCESS = 'SMURFS_DELETING_SUCCESS';
 export const SMURFS_DELETING_ERROR = 'SMURFS_DELETING_ERROR';
 
-export const SHOW_UI = 'SHOW_UI';
-
 const ADDRESS = 'http://localhost:3333';
 
 export const getSmurfs = _ => {
@@ -104,9 +102,6 @@ export const deleteSmurf = id => {
             type: SMURF_DELETING_SUCCESS,
             payload: data.SmurfRemoved,
           });
-          dispatch({
-            type: SHOW_UI,
-          });
         })
         .catch(err => {
           dispatch({ type: SMURF_DELETING_ERROR, payload: err });
@@ -115,3 +110,22 @@ export const deleteSmurf = id => {
   };
 };
 
+export const deleteAllSmurfs = _ => {
+  const smurfAPiCall = axios.get(`${ADDRESS}/smurfs/d`);
+
+  return dispatch => {
+    dispatch({ type: RESET_ACTION_STATE });
+
+    dispatch({ type: SMURFS_DELETING });
+
+    setTimeout(_ => {
+      smurfAPiCall
+        .then(({ data }) => {
+          dispatch({ type: SMURFS_DELETING_SUCCESS, payload: data });
+        })
+        .catch(err => {
+          dispatch({ type: SMURFS_DELETING_ERROR, payload: err });
+        });
+    }, Math.floor(Math.random() * 10000) / 2);
+  };
+};
